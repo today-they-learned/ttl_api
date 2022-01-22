@@ -46,4 +46,5 @@ DJANGO_SETTINGS_MODULE=config.settings pylint --load-plugins pylint_django
 ```
 
 ## 문서화 확인하는 방법
-- [127.0.0.1:8000/swagger](127.0.0.1:8000/swagger) 또는 [127.0.0.1:8000/redoc](127.0.0.1:8000/redoc) 접속하기 
+
+[127.0.0.1:8000/swagger](http://127.0.0.1:8000/swagger) 또는 [127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 접속하기 
