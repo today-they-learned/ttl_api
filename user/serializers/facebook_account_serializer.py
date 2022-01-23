@@ -1,4 +1,3 @@
-from dataclasses import field
 from rest_framework.serializers import ModelSerializer
 
 from user.models import FacebookAccount
