@@ -14,3 +14,4 @@ class FacebookAccount(SnsAccount):
         db_table = "facebook_accounts"
         verbose_name = "FacebookAccount"
         verbose_name_plural = "FacebookAccounts"
+        default_related_name = "facebook_account"

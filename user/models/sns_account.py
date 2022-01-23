@@ -3,18 +3,16 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class SnsAccount(models.Model):
-    """Abstract Model definition for SnsUser."""
-
-    @staticmethod
-    def get_user_related_name():
-        return "sns_account"
+    """AbstractModel definition for SnsUser."""
 
     username = models.TextField(
-        verbose_name=_("username"),
+        verbose_name=_("sns username"),
+        blank=True,
+        null=True,
     )
 
-    user = models.ForeignKeyField(
-        related_name=get_user_related_name.__func__(),
+    user = models.OneToOneField(
+        "user.User",
         on_delete=models.CASCADE,
         null=False,
         blank=False,
@@ -26,6 +24,7 @@ class SnsAccount(models.Model):
         abstract = True
         verbose_name = "SnsAccount"
         verbose_name_plural = "SnsAccounts"
+        default_related_name = "sns_account"
 
     def __str__(self):
         """Unicode representation of SnsAccount."""
