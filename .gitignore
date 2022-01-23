@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,venv,dotenv,visualstudiocode,pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,venv,dotenv,visualstudiocode,pycharm
 
+### analyze tools ###
+anaylze/
+
 ### Django ###
 *.log
 *.pot
