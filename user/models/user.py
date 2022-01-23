@@ -5,6 +5,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.utils.translation import ugettext_lazy as _
+from taggit.managers import TaggableManager
 
 
 class UserManager(BaseUserManager):
@@ -58,6 +59,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )  # 유저의 소개말
+    tags = TaggableManager(
+        blank=True,
+    )  # 관심 태그 목록
     repository = models.TextField(
         verbose_name=_("refreshing github repository"),
         null=True,

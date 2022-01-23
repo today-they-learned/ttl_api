@@ -1,10 +1,13 @@
 from rest_framework.serializers import ModelSerializer
 
 from user.models import User
+from taggit_serializer.serializers import TaggitSerializer, TagListSerializerField
 
 
-class UserSerializer(ModelSerializer):
+class UserSerializer(TaggitSerializer, ModelSerializer):
     """Serializer definition for User Model."""
+
+    tags = TagListSerializerField()
 
     class Meta:
         """Meta definition for UserSerializer."""
@@ -13,6 +16,7 @@ class UserSerializer(ModelSerializer):
         fields = [
             "id",
             "email",
+            "tags",
             "username",
             "created_at",
             "updated_at",
