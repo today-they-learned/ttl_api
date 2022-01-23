@@ -7,6 +7,7 @@
 SECRET_KEY=your-secret-key
 DEBUG=True
 DJANGO_SETTINGS_MODULE=config.settings pylint --load-plugins pylint_django
+FRONT_DEV_PORT=3000
 ```
 
 ### 라이브러리 설정하기

@@ -33,6 +33,8 @@ DEBUG = bool(env("DEBUG"))
 
 ALLOWED_HOSTS: List[str] = []
 
+FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
+
 # Application definition
 
 CUSTOM_APPS = [
@@ -55,6 +57,8 @@ THIRDPART_APPS = [
     # django-taggit
     "taggit",
     "taggit_serializer",
+    # django-cors-header
+    "corsheaders",
 ]
 
 DJANGO_APPS = [
@@ -70,6 +74,7 @@ DJANGO_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRDPART_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -180,3 +185,9 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": True,
 }
+
+CORS_ORIGIN_WHITELIST = [
+    f"http://127.0.0.1:{FRONT_DEV_PORT}",
+    f"http://localhost:{FRONT_DEV_PORT}",
+]
+CORS_ALLOW_CREDENTIALS = True
