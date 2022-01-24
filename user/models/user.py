@@ -4,8 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
-from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
+from django.utils.translation import gettext_lazy as _
 
 
 class UserManager(BaseUserManager):
