@@ -52,6 +52,9 @@ THIRDPART_APPS = [
     "rest_auth.registration",
     # documentation
     "drf_yasg",
+    # django-taggit
+    "taggit",
+    "taggit_serializer",
 ]
 
 DJANGO_APPS = [
