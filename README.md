@@ -46,6 +46,24 @@ FRONT_DEV_PORT=3000
 > pip freeze > requirements.txt
 ```
 
+### Docker를 이용한 개발 환경 구성
+
+1. 아래 환경변수를 .env파일에 추가로 넣어주세요.
+
+```
+# DOCKERIZE SETTINGS
+PORT=1234
+USE_DOCKER=True
+
+## POSTGRES SETTINGS
+POSTGRES_NAME=postgres
+POSTGRES_PORT=5123
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+```
+
+2. `docker-compose up -d --build`
+
 ## 문서화 확인하는 방법
 
 [127.0.0.1:8000/swagger](http://127.0.0.1:8000/swagger) 또는 [127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc) 접속하기 
