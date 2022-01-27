@@ -25,7 +25,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG") == "True"
 
-ALLOWED_HOSTS: List[str] = []
+ALLOWED_HOSTS: List[str] = ["*"]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
 
