@@ -5,3 +5,5 @@ from .instagram_account import InstagramAccount
 from .twitter_account import TwitterAccount
 from .study_group import StudyGroup
 from .user_study_group import UserStudyGroup
+from .follow import Follow
+
