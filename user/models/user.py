@@ -73,6 +73,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False,
         null=False,
     )  # 추천 메일을 구독했는지 여부를 나타냅니다.
+    study_groups = models.ManyToManyField(
+        "user.StudyGroup",
+        related_name="users",
+        through="user.UserStudyGroup",
+    )
     created_at = models.DateTimeField(
         verbose_name=_("created at"),
         auto_now_add=True,
