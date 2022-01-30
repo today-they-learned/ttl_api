@@ -1,4 +1,3 @@
-from re import T
 from django.db import models
 from user.models import User
 
@@ -12,6 +11,7 @@ SOURCE_CHOICES = [
 
 class Article(models.Model):
     """Model definition for Article."""
+    
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -34,10 +34,10 @@ class Article(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return self.title
     class Meta:
         verbose_name="Article"
         verbose_name_plural = "Articles"
         db_table="articles"
-    
