@@ -4,6 +4,9 @@
 ### analyze tools ###
 anaylze/
 
+### static files
+staticfiles/
+
 ### Django ###
 *.log
 *.pot
