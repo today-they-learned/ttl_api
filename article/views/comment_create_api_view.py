@@ -1,3 +1,5 @@
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
@@ -22,8 +24,18 @@ class CommentCreateAPIView(BaseView, CreateAPIView):
             article=article,
         )
 
-    def post(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, id=kwargs["id"])
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                "id",
+                openapi.IN_PATH,
+                description="Article ID",
+                type=openapi.TYPE_NUMBER,
+            )
+        ]
+    )
+    def post(self, request, id):
+        article = get_object_or_404(Article, id=id)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer, article)
