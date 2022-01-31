@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 SOURCE_CHOICES = [
@@ -38,11 +39,13 @@ class Article(models.Model):
         null=True,
     )
     created_at = models.DateTimeField(
+        verbose_name=_("created at"),
         auto_now_add=True,
-    )
+    )  # article 레코드가 생성된 일저
     updated_at = models.DateTimeField(
+        verbose_name=_("updated at"),
         auto_now=True,
-    )
+    )  # article 레코드가 수정된 일자
 
     def __str__(self):
         return self.title
