@@ -20,11 +20,25 @@ services:
       dockerfile: Dockerfile
       args:
         PORT: ${PORT}
+    image: ttl_api_web
+    container_name: ttl_api_web
     command: >
-      sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:${PORT} --insecure"
+      sh -c "./manage.py migrate
+      && ./manage.py collectstatic --noinput
+      && gunicorn config.wsgi -b 0.0.0.0:${PORT}"
     ports:
       - "${PORT}:${PORT}"
     volumes:
       - .:/web
     depends_on:
       - db
+  nginx:
+    image: nginx
+    container_name: nginx_service
+    volumes:
+      - ./deploy:/etc/nginx/conf.d
+      - ./.staticfiles:/static
+    ports:
+      - "100:100"
+    depends_on:
+      - web
