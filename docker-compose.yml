@@ -37,7 +37,8 @@ services:
     container_name: nginx_service
     volumes:
       - ./proxy/nginx.conf:/etc/nginx/nginx.conf
-      - ./.staticfiles:/static
+      - ./staticfiles:/staticfiles
+      - ./media:/media
     ports:
       - "80:80"
     depends_on:
