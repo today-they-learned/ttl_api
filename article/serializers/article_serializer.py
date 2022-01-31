@@ -1,10 +1,16 @@
 from rest_framework.serializers import ModelSerializer
 
 from article.models import Article
+from article.serializers.comment_serializer import CommentSerializer
 
 
 class ArticleSerializer(ModelSerializer):
     """Serializer definition for Article Model."""
+
+    comments = CommentSerializer(
+        many=True,
+        read_only=True,
+    )
 
     class Meta:
         """Meta definition for ArticleSerializer."""
@@ -15,6 +21,7 @@ class ArticleSerializer(ModelSerializer):
             "user",
             "title",
             "content",
+            "comments",
             "created_at",
             "updated_at",
         ]
@@ -22,6 +29,7 @@ class ArticleSerializer(ModelSerializer):
         read_only_fields = [
             "id",
             "user",
+            "comments",
             "created_at",
             "updated_at",
         ]
