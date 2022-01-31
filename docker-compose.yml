@@ -36,9 +36,9 @@ services:
     image: nginx
     container_name: nginx_service
     volumes:
-      - ./deploy:/etc/nginx/conf.d
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf
       - ./.staticfiles:/static
     ports:
-      - "100:100"
+      - "80:80"
     depends_on:
       - web

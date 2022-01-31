@@ -26,7 +26,12 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG") == "True"
 
-ALLOWED_HOSTS: List[str] = ["*"]
+ALLOWED_HOSTS: List[str] = [
+    "localost",
+    "127.0.0.1",
+    "15.164.165.131",
+    "ttl_api_web",
+]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
 
