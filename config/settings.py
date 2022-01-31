@@ -203,3 +203,7 @@ CORS_ORIGIN_WHITELIST = [
     f"http://localhost:{FRONT_DEV_PORT}",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
