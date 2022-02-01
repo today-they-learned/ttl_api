@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from typing import List
 import environ
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -25,7 +26,12 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG") == "True"
 
-ALLOWED_HOSTS: List[str] = ["*"]
+ALLOWED_HOSTS: List[str] = [
+    "localost",
+    "127.0.0.1",
+    "15.164.165.131",
+    "ttl_api_web",
+]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
 
@@ -155,8 +161,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = "/static/"
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -200,3 +211,7 @@ CORS_ORIGIN_WHITELIST = [
     f"http://localhost:{FRONT_DEV_PORT}",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
