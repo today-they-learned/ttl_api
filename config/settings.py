@@ -43,6 +43,7 @@ CUSTOM_APPS = [
     "user",
     "article",
     "comment",
+    "study",
 ]
 
 THIRDPART_APPS = [
