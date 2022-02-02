@@ -5,12 +5,14 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from article.serializers.article_serializer import ArticleSerializer
 from config.views import BaseView
 from article.models import Article
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
     authentication_classses = [SessionAuthentication, JWTAuthentication]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         """GET: /api/articles/
