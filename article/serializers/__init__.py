@@ -1,1 +1,2 @@
 from .article_serializer import ArticleSerializer
+from .bookmark_serializer import BookmarkSerializer
