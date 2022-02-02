@@ -42,6 +42,7 @@ USE_DOCKER = env("USE_DOCKER") == "True" or False
 CUSTOM_APPS = [
     "user",
     "article",
+    "comment",
 ]
 
 THIRDPART_APPS = [

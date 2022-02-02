@@ -7,8 +7,9 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from article.serializers import CommentSerializer
-from article.models import Article, Comment
+from comment.serializers import CommentSerializer
+from article.models import Article
+from comment.models import Comment
 
 from config.views import BaseView
 
@@ -27,15 +28,15 @@ class CommentCreateAPIView(BaseView, CreateAPIView):
     @swagger_auto_schema(
         manual_parameters=[
             openapi.Parameter(
-                "id",
-                openapi.IN_PATH,
+                "article_id",
+                openapi.IN_QUERY,
                 description="Article ID",
                 type=openapi.TYPE_NUMBER,
             )
         ]
     )
-    def post(self, request, id):
-        article = get_object_or_404(Article, id=id)
+    def post(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, id=kwargs["article_id"])
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer, article)

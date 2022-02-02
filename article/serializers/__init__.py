@@ -1,1 +1,1 @@
-from .article_serializer import ArticleSerializer, CommentSerializer
+from .article_serializer import ArticleSerializer
