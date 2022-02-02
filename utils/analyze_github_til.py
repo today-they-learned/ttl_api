@@ -4,6 +4,7 @@ import shutil
 import aiofiles
 import asyncio
 
+"""github_collector mac version"""
 
 class AnalyzeGithubTil:
     def __init__(self, username, repository):
@@ -41,6 +42,8 @@ class AnalyzeGithubTil:
 
         tasks = set()
         for path, file_name in path_list:
+            if file_name == "README.md" or file_name == "readme.md":    # readme 파일을 제외
+                continue
             tasks.add(self.get_file_content(path, file_name))
 
         asyncio.run(asyncio.wait(tasks))
