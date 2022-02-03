@@ -28,30 +28,6 @@ class BookmarkCreateAPIView(BaseView,
         serializer.is_valid(raise_exception=True)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    # def create(self, request, article_id, *args, **kwargs):
-    #     try:
-    #         bookmark_check = Bookmark.objects.filter(user=self.current_user)
-    #         for bookmark in bookmark_check:
-    #             if article_id == bookmark.article.id:
-    #                 print(article_id,bookmark.article.id)
-    #                 return Response(status=status.HTTP_409_CONFLICT)
-    #         serializer = self.get_serializer(data=request.data)
-    #         serializer.is_valid(raise_exception=True)
-    #         is_article_exist = self.perform_create(serializer,article_id)
-    #         if is_article_exist is False:
-    #             return Response(status=status.HTTP_404_NOT_FOUND)
-    #         else:
-    #             headers = self.get_success_headers(serializer.data)
-    #             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)       
-    #     except Bookmark.DoesNotExist:
-    #         serializer = self.get_serializer(data=request.data)
-    #         serializer.is_valid(raise_exception=True)
-    #         is_article_exist = self.perform_create(serializer,article_id)
-    #         if is_article_exist is False:
-    #             return Response(status=status.HTTP_404_NOT_FOUND)
-    #         else:
-    #             headers = self.get_success_headers(serializer.data)
-    #             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer, article_id):
         article = Article.objects.get(id=article_id)
