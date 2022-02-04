@@ -29,8 +29,4 @@ class BookmarkCreateAPIView(BaseView,
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-    def perform_create(self, serializer, article_id):
-        article = Article.objects.get(id=article_id)
-        serializer.save(user=self.current_user,article=article)
-
 
