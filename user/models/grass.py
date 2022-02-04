@@ -9,9 +9,6 @@ class Grass(models.Model):
         related_name = "grasses",
         verbose_name="user"
     )
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
     study_count = models.PositiveIntegerField(
         default=0
     )
@@ -20,6 +17,9 @@ class Grass(models.Model):
     )
     edit_count = models.PositiveIntegerField(
         default=0
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True
     )
     class Meta:
         verbose_name="Grass"
