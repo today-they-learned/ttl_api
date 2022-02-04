@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from typing import List
 import environ
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -25,7 +26,12 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG") == "True"
 
-ALLOWED_HOSTS: List[str] = ["*"]
+ALLOWED_HOSTS: List[str] = [
+    "localost",
+    "127.0.0.1",
+    "15.164.165.131",
+    "ttl_api_web",
+]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
 
@@ -36,6 +42,8 @@ USE_DOCKER = env("USE_DOCKER") == "True" or False
 CUSTOM_APPS = [
     "user",
     "article",
+    "comment",
+    "study",
 ]
 
 THIRDPART_APPS = [
@@ -155,8 +163,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = "/static/"
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -170,6 +183,7 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -180,6 +194,10 @@ REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "user.serializers.UserSerializer",
 }
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
@@ -200,3 +218,7 @@ CORS_ORIGIN_WHITELIST = [
     f"http://localhost:{FRONT_DEV_PORT}",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}

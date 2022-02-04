@@ -4,7 +4,7 @@ import shutil
 import aiofiles
 import asyncio
 
-"""github_collector mac version"""
+"""github_collector window version"""
 
 class AnalyzeGithubTil:
     def __init__(self, username, repository):
@@ -16,13 +16,13 @@ class AnalyzeGithubTil:
         """Repository를 특정 디렉토리에 Clone 합니다."""
         Repo.clone_from(
             f"https://github.com/{self.username}/{self.repository}",
-            f"./anaylze/{self.username}/{self.repository}",
+            f".anaylze\{self.username}\{self.repository}",
         )
 
     def get_markdown_file_path_list(self):
         """Clone한 레포지터리를 탐색하면서 md 파일 목록을 뽑아냅니다."""
         file_paths = []
-        for top, _, files in os.walk(f"./anaylze/{self.username}/{self.repository}"):
+        for top, _, files in os.walk(f".anaylze\{self.username}\{self.repository}"):
             for file_name in files:
                 if file_name[-3:] == ".md":
                     file_paths.append([os.path.join(top, file_name), file_name])
@@ -31,7 +31,7 @@ class AnalyzeGithubTil:
 
     async def get_file_content(self, path, file_name):
         """비동기로 파일을 읽어낸 후, 파일명과 파일 내용을 담아냅니다."""
-        async with aiofiles.open(path, mode="r") as f:
+        async with aiofiles.open(path, mode="r", encoding='utf-8') as f:
             content = await f.read()
             self.results.append([file_name[:-3], content])
 
@@ -50,7 +50,7 @@ class AnalyzeGithubTil:
 
     def __del__(self):
         """작업을 마치면, 클론한 디렉토리를 제거합니다."""
-        shutil.rmtree(f"./anaylze/{self.username}/{self.repository}")
+        shutil.rmtree(f".anaylze\{self.username}\{self.repository}", ignore_errors=True)
 
 
 if __name__ == "__main__":
