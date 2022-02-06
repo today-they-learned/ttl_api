@@ -2,7 +2,10 @@ from django.db import models
 from article.models import Article
 from user.models import User
 
-CATEGORY_CHOICES = [
+
+class Feedback(models.Model):
+    """Model definition for Feedback"""
+    CATEGORY_CHOICES = (
     ('thumbs_up','thumbs_up'),
     ('heart','heart'),
     ('clap','clap'),
@@ -13,10 +16,7 @@ CATEGORY_CHOICES = [
     ('eyes','eyes'),
     ('perfect','perfect'),
     ('bulb','bulb')
-]
-
-class Feedback(models.Model):
-    """Model definition for Feedback"""
+)
     
     article = models.ForeignKey(
         Article,
