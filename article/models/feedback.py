@@ -21,7 +21,7 @@ class Feedback(models.Model):
     article = models.ForeignKey(
         Article,
         on_delete = models.CASCADE,
-        related_name="feed_backs"
+        related_name="feedbacks"
     )
     created_at = models.DateTimeField(
         auto_now=True
@@ -29,15 +29,15 @@ class Feedback(models.Model):
     user = models.ForeignKey(
         User,
         on_delete = models.CASCADE,
-        related_name="feed_backs"    
+        related_name="feedbacks"    
     )
     category = models.CharField(
         null=True,
-        choices = CATEGORY_CHOICES,
+        choices=CATEGORY_CHOICES,
         max_length=10
     )
     
     class Meta:
         verbose_name="Feedback"
-        verbose_name_plural = "Feedbacks"
-        db_table="feed_backs"
+        verbose_name_plural="Feedbacks"
+        db_table="feedbacks"
