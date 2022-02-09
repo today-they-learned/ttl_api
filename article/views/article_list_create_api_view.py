@@ -1,5 +1,6 @@
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import ListCreateAPIView
+from rest_framework import filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from article.serializers.article_serializer import ArticleSerializer
@@ -13,6 +14,8 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     queryset = Article.objects.all()
     authentication_classses = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title','content']
 
     def get(self, request, *args, **kwargs):
         """GET: /api/articles/
@@ -27,5 +30,4 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
         """POST: /api/articles/
         Article 생성
         """
-
         return self.create(request, *args, **kwargs)
