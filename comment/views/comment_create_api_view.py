@@ -17,7 +17,7 @@ from config.views import BaseView
 class CommentCreateAPIView(BaseView, CreateAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    authentication_classses = [SessionAuthentication, JWTAuthentication]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
 
     def perform_create(self, serializer, article):
         serializer.save(

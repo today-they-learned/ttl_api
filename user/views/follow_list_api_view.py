@@ -15,7 +15,7 @@ class FollowingListView(BaseView, ListAPIView):
     - 현재 유저가 Following(create) 목록(list)이 반환된다.
     """
     serializer_class = FollowSerializer
-    authentication_classses = [SessionAuthentication, JWTAuthentication]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
 
@@ -38,7 +38,7 @@ class FollowerListView(BaseView, ListAPIView):
     - 현재 유저의 Follower(create) 목록(list)이 반환된다.
     """
     serializer_class = FollowSerializer
-    authentication_classses = [SessionAuthentication, JWTAuthentication]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, id, *args, **kwargs):

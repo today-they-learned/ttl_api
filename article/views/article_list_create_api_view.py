@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
-    authentication_classses = [SessionAuthentication, JWTAuthentication]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
