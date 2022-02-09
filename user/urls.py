@@ -1,11 +1,20 @@
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 
-from user.views.follow_create_api_view import FollowCreateAPIView
+from user.views import (
+    FollowCreateAPIView,
+    FollowDestroyAPIView,
+    FollowingListView,
+    FollowerListView,
+)
+
 
 urlpatterns = [
     path("", include("dj_rest_auth.urls")),
     path("", include("dj_rest_auth.registration.urls")),
     path("api-token-auth/", obtain_auth_token),
-    path("<str:following>", FollowCreateAPIView.as_view()),
+    path("<int:id>/follow", FollowCreateAPIView.as_view()),
+    path("<int:id>/unfollow", FollowDestroyAPIView.as_view()),
+    path("<int:id>/follwing", FollowingListView.as_view()),
+    path("<int:id>/follwer", FollowerListView.as_view()),
 ]
