@@ -1,11 +1,12 @@
 from rest_framework.serializers import HyperlinkedModelSerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 from user.models import User
-from taggit_serializer.serializers import TaggitSerializer, TagListSerializerField
+from tag.serializers import TagListSerializerField, TaggitSerializer
+
 from .facebook_account_serializer import FacebookAccountSerializer
 from .instagram_account_serializer import InstagramAccountSerializer
 from .twitter_account_serializer import TwitterAccountSerializer
-from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 class UserSerializer(
