@@ -11,11 +11,5 @@ class BookmarkAdmin(admin.ModelAdmin):
         "article",
         "created_at",
     )
-    readonly_fields = (
-        "created_at",
-        "user",
-        "article",
-    )
-    ordering = (
-        "created_at",
-    )
+    readonly_fields = ("created_at",)
+    ordering = ("created_at",)

@@ -16,7 +16,7 @@ class Study(models.Model):
         on_delete=models.CASCADE,
     )  # 조회한 user
     studied_at = models.DateTimeField(
-        verbose_name=_("created at"),
+        verbose_name=_("studied at"),
         auto_now_add=True,
     )  # 조회한 일자
 
