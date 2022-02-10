@@ -12,7 +12,7 @@ from article.permissions import IsArticleEditableOrDestroyable
 class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
-    authentication_classses = [SessionAuthentication, JWTAuthentication]
+    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticated, IsArticleEditableOrDestroyable]
 
     def get(self, request, *args, **kwargs):
