@@ -8,7 +8,7 @@ from taggit.models import Tag
 
 
 class TagSerializer(ModelSerializer):
-    """ "Serializer definition for Tag Model."""
+    """Serializer definition for Tag Model."""
 
     class Meta:
         """Meta definition for TagSerializer."""
