@@ -7,6 +7,7 @@ from config.views import BaseView
 from article.models import Article
 from article.serializers.article_serializer import ArticleSerializer
 from article.permissions import IsArticleEditableOrDestroyable
+from study.models import Study
 
 
 class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView):
@@ -16,6 +17,8 @@ class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView
     permission_classes = [IsAuthenticated, IsArticleEditableOrDestroyable]
 
     def get(self, request, *args, **kwargs):
+        Study.add_study_history(self.get_object(), self.current_user)
+
         return self.retrieve(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
