@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import User
 from django.utils.translation import gettext_lazy as _
+from taggit.managers import TaggableManager
 
 
 SOURCE_CHOICES = [
@@ -25,6 +26,9 @@ class Article(models.Model):
     )
     content = models.TextField(
         null=True,
+        blank=True,
+    )
+    tags = TaggableManager(
         blank=True,
     )
     source = models.CharField(
