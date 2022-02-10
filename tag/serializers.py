@@ -2,6 +2,24 @@ import six
 import json
 from django.utils.translation import ugettext_lazy as _
 from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
+
+from taggit.models import Tag
+
+
+class TagSerializer(ModelSerializer):
+    """Serializer definition for Tag Model."""
+
+    class Meta:
+        """Meta definition for TagSerializer."""
+
+        model = Tag
+        fields = [
+            "name",
+        ]
+        read_only_fields = [
+            "name",
+        ]
 
 
 class TaggitSerializer(serializers.Serializer):

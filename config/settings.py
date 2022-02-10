@@ -44,6 +44,7 @@ CUSTOM_APPS = [
     "article",
     "comment",
     "study",
+    "tag",
 ]
 
 THIRDPART_APPS = [
