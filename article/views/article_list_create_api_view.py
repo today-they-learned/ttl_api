@@ -29,6 +29,7 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
         queryset = self.filter_queryset(self.get_queryset())
 
         tab = request.GET.get("tab")
+        user_id = request.GET.get("user_id")
 
         if tab is not None:
             if tab == "follow":
@@ -49,6 +50,9 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                 ).values_list("article__id", flat=True)
 
                 queryset = queryset.filter(id__in=studied_article_ids)
+
+        if user_id is not None:
+            queryset = queryset.filter(user__id=user_id)
 
         page = self.paginate_queryset(queryset)
         if page is not None:
