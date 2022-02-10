@@ -47,6 +47,7 @@ urlpatterns = [
     path("api/users/", include("user.urls")),
     path("api/articles/", include("article.urls")),
     path("api/comments/", include("comment.urls")),
+    path("api/tags/", include("tag.urls")),
     re_path(
         r"^swagger(?P<format>\.json|\.yaml)$",
         schema_view.without_ui(cache_timeout=0),
