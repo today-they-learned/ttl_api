@@ -1,1 +1,2 @@
-from .facebook_account_update_api_view import FacebookAccountUpdateAPIView
+#from .facebook_account_update_api_view import FacebookAccountUpdateAPIView
+from .user_retrieve_api_view import UserRetrieveAPIView
