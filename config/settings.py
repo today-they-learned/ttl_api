@@ -27,8 +27,9 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG") == "True"
 
 ALLOWED_HOSTS: List[str] = [
-    "localost",
+    "localhost",
     "127.0.0.1",
+    "0.0.0.0",
     "15.164.165.131",
     "ttl_api_web",
 ]

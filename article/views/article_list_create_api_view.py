@@ -5,12 +5,13 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from article.filters import TagsFilter
 from article.serializers.article_serializer import ArticleSerializer
-from config.views import BaseView
 from article.models import Article, Bookmark
+from config.pagination import DefaultPagination
+from config.views import BaseView
 from study.models import Study
 from user.models import Follow
-from article.filters import TagsFilter
 
 
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
@@ -20,6 +21,7 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, TagsFilter]
     search_fields = ["title", "content"]
+    pagination_class = DefaultPagination
 
     def get(self, request, *args, **kwargs):
         """GET: /api/articles/
