@@ -6,8 +6,8 @@ from user.views import (
     FollowDestroyAPIView,
     FollowingListView,
     FollowerListView,
+    UserRetrieveAPIView,
 )
-
 
 urlpatterns = [
     path("", include("dj_rest_auth.urls")),
@@ -17,4 +17,5 @@ urlpatterns = [
     path("<int:id>/unfollow", FollowDestroyAPIView.as_view()),
     path("<int:id>/follwing", FollowingListView.as_view()),
     path("<int:id>/follwer", FollowerListView.as_view()),
+    path("<int:id>", UserRetrieveAPIView.as_view()),
 ]
