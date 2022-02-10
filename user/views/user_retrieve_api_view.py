@@ -11,7 +11,8 @@ class UserRetrieveAPIView(BaseView, RetrieveAPIView):
     serializer_class = UserSerializer
     queryset = Article.objects.all()
 
-    def retrieve(self, request, id, *args, **kwargs):
+
+    def get(self, request, id, *args, **kwargs):
         """GET: /api/users/:id
         User 정보
         """
