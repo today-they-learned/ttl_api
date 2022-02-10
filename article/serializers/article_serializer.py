@@ -1,12 +1,17 @@
-from rest_framework.serializers import ModelSerializer
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
+from tag.serializers import TagListSerializerField, TaggitSerializer
 from article.models import Article
 from comment.serializers import CommentSerializer
 
 
-class ArticleSerializer(ModelSerializer):
+class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
     """Serializer definition for Article Model."""
 
+    tags = TagListSerializerField(
+        required=False,
+        read_only=False,
+    )
     comments = CommentSerializer(
         many=True,
         read_only=True,
@@ -21,6 +26,7 @@ class ArticleSerializer(ModelSerializer):
             "user",
             "title",
             "content",
+            "tags",
             "comments",
             "created_at",
             "updated_at",
