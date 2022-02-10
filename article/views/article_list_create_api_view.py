@@ -33,7 +33,7 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
             if tab == "follow":
                 following_user_ids = Follow.objects.filter(
                     follower=self.current_user
-                ).values_list("id", flat=True)
+                ).values_list("follower__id", flat=True)
 
                 queryset = queryset.filter(user__id__in=following_user_ids)
 
