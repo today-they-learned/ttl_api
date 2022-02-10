@@ -8,6 +8,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from article.serializers.article_serializer import ArticleSerializer
 from config.views import BaseView
 from article.models import Article, Bookmark
+from study.models import Study
 from user.models import Follow
 from article.filters import TagsFilter
 
@@ -42,6 +43,12 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                 ).values_list("article__id", flat=True)
 
                 queryset = queryset.filter(id__in=bookmark_article_ids)
+            elif tab == "study":
+                studied_article_ids = Study.objects.filter(
+                    user=self.current_user
+                ).values_list("article__id", flat=True)
+
+                queryset = queryset.filter(id__in=studied_article_ids)
 
         page = self.paginate_queryset(queryset)
         if page is not None:
