@@ -4,4 +4,6 @@ from .article_retrieve_update_destroy_api_view import (
 )
 from .bookmark_create_api_view import BookmarkCreateAPIView
 from .bookmark_destroy_api_view import BookmarkDestroyAPIView
+from .feedback_create_api_view import FeedbackCreateAPIView
+from .feedback_destroy_api_view import FeedbackDestroyAPIView
 

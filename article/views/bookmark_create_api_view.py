@@ -24,9 +24,8 @@ class BookmarkCreateAPIView(BaseView,
         if is_bookmarked:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = self.get_serializer(data=bookmark)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
 
