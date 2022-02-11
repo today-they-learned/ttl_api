@@ -2,7 +2,8 @@ from django.db import models
 from user.models import User
 from django.utils.translation import gettext_lazy as _
 from taggit.managers import TaggableManager
-
+from study.models import Study
+from article.models.feedback import Feedback
 
 SOURCE_CHOICES = [
     ("tl", "TTL"),
@@ -86,4 +87,12 @@ class Article(models.Model):
 
     def reset_score(self):
         self.score = self.study_count + self.feedback_count * 15
+        self.save()
+
+    def reset_study_count(self):
+        self.study_count = Study.objects.filter(article=self).count()
+        self.save()
+
+    def reset_feedback_count(self):
+        self.feedback_count = Feedback.objects.filter(article=self).count()
         self.save()
