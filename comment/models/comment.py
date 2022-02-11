@@ -19,7 +19,7 @@ class Comment(models.Model):
     created_at = models.DateTimeField(
         verbose_name=_("created at"),
         auto_now_add=True,
-    )  # comment 레코드가 생성된 일저
+    )  # comment 레코드가 생성된 일자
     updated_at = models.DateTimeField(
         verbose_name=_("updated at"),
         auto_now=True,

@@ -17,7 +17,7 @@ class UserStudyGroup(models.Model):
     created_at = models.DateTimeField(
         verbose_name=_("created at"),
         auto_now_add=True,
-    )  # 유저 그룹 레코드가 생성된 일저
+    )  # 유저 그룹 레코드가 생성된 일자
     updated_at = models.DateTimeField(
         verbose_name=_("updated at"),
         auto_now=True,
