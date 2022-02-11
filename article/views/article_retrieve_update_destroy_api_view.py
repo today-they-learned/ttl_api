@@ -20,9 +20,11 @@ class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView
     def get(self, request, *args, **kwargs):
         article = self.get_object()
         user = self.current_user
-        Study.add_study_history(article, user)
-        Grass.increment_study_count(user)
-        article.increment_study_count()
+
+        if self.is_authenticated_user:
+            Study.add_study_history(article, user)
+            Grass.increment_study_count(user)
+            article.increment_study_count()
 
         return self.retrieve(request, *args, **kwargs)
 
