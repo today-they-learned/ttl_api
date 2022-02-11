@@ -86,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(
         verbose_name=_("created at"),
         auto_now_add=True,
-    )  # 유저 레코드가 생성된 일저
+    )  # 유저 레코드가 생성 일자
     updated_at = models.DateTimeField(
         verbose_name=_("updated at"),
         auto_now=True,
