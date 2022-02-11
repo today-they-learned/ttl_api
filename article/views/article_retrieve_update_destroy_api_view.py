@@ -13,7 +13,7 @@ class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
     authentication_classes = [SessionAuthentication, JWTAuthentication]
-    permission_classes = [IsAuthenticated, IsArticleEditableOrDestroyable]
+    permission_classes = [IsArticleEditableOrDestroyable]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
