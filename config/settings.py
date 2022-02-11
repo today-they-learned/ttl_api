@@ -31,6 +31,7 @@ ALLOWED_HOSTS: List[str] = [
     "127.0.0.1",
     "0.0.0.0",
     "15.164.165.131",
+    "3.38.58.82",
     "ttl_api_web",
     "api.todaytheylearn.com",
 ]
