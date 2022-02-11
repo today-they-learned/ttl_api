@@ -15,6 +15,11 @@ from article.permissions import IsArticleEditableOrDestroyable
 class FeedbackDestroyAPIView(BaseView,
                              mixins.DestroyModelMixin,
                              generics.GenericAPIView):
+    """FeedbackDestroyAPIView
+    DELETE: api/articles/<article_id>/feedback
+    Feedback 삭제
+    """
+    
     serializer_class = FeedbackSerializer
     queryset = Feedback.objects.all()
     authentication_classes = [SessionAuthentication, JWTAuthentication]

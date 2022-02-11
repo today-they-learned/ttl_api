@@ -1,11 +1,9 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from article.models import Article
 from user.models import User
 
-
-class Feedback(models.Model):
-    """Model definition for Feedback"""
-    CATEGORY_CHOICES = (
+CATEGORY_CHOICES = (
     ('thumbs_up','thumbs_up'),
     ('heart','heart'),
     ('clap','clap'),
@@ -17,6 +15,13 @@ class Feedback(models.Model):
     ('perfect','perfect'),
     ('bulb','bulb')
 )
+
+
+
+
+            
+class Feedback(models.Model):
+    """Model definition for Feedback"""
     
     article = models.ForeignKey(
         Article,
@@ -32,12 +37,14 @@ class Feedback(models.Model):
         related_name="feedbacks"    
     )
     category = models.CharField(
-        null=True,
+        null=False,
+        default="thumbs_up",
         choices=CATEGORY_CHOICES,
-        max_length=10
+        max_length=10,
     )
     
     class Meta:
         verbose_name="Feedback"
         verbose_name_plural="Feedbacks"
         db_table="feedbacks"
+    
