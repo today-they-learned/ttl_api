@@ -11,7 +11,7 @@ from article.models import Article, Bookmark
 from config.pagination import DefaultPagination
 from config.views import BaseView
 from study.models import Study
-from user.models import Follow
+from user.models import Follow, Grass
 
 
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
@@ -73,4 +73,5 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
         """POST: /api/articles/
         Article 생성
         """
+        Grass.increment_write_count(self.current_user)
         return self.create(request, *args, **kwargs)

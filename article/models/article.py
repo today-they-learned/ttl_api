@@ -69,3 +69,21 @@ class Article(models.Model):
         verbose_name_plural = "Articles"
         db_table = "articles"
 
+    def increment_study_count(self):
+        self.study_count += 1
+        self.save()
+        self.reset_score()
+
+    def increment_feedback_count(self):
+        self.feedback_count += 1
+        self.save()
+        self.reset_score()
+
+    def decrement_feedback_count(self):
+        self.feedback_count -= 1
+        self.save()
+        self.reset_score()
+
+    def reset_score(self):
+        self.score = self.study_count + self.feedback_count * 15
+        self.save()
