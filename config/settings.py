@@ -32,6 +32,7 @@ ALLOWED_HOSTS: List[str] = [
     "0.0.0.0",
     "15.164.165.131",
     "ttl_api_web",
+    "api.todaytheylearn.com",
 ]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
@@ -218,6 +219,8 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = [
     f"http://127.0.0.1:{FRONT_DEV_PORT}",
     f"http://localhost:{FRONT_DEV_PORT}",
+    "https://todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
