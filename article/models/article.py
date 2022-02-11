@@ -1,9 +1,9 @@
 from django.db import models
 from user.models import User
 from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import now
 from taggit.managers import TaggableManager
-
+from study.models import Study
+from article.models.feedback import Feedback
 
 SOURCE_CHOICES = [
     ("tl", "TTL"),
@@ -43,7 +43,12 @@ class Article(models.Model):
         blank=True,
         null=True,
     )
-    study_count = models.PositiveIntegerField(default=0)  #조회수
+    study_count = models.PositiveIntegerField(
+        default=0,
+    )  # 조회수
+    feedback_count = models.PositiveIntegerField(
+        default=0,
+    )  # 받은 피드백 수
     score = models.IntegerField(
         verbose_name=_("score"),
         default=0,
@@ -65,3 +70,29 @@ class Article(models.Model):
         verbose_name_plural = "Articles"
         db_table = "articles"
 
+    def increment_study_count(self):
+        self.study_count += 1
+        self.save()
+        self.reset_score()
+
+    def increment_feedback_count(self):
+        self.feedback_count += 1
+        self.save()
+        self.reset_score()
+
+    def decrement_feedback_count(self):
+        self.feedback_count -= 1
+        self.save()
+        self.reset_score()
+
+    def reset_score(self):
+        self.score = self.study_count + self.feedback_count * 15
+        self.save()
+
+    def reset_study_count(self):
+        self.study_count = Study.objects.filter(article=self).count()
+        self.save()
+
+    def reset_feedback_count(self):
+        self.feedback_count = Feedback.objects.filter(article=self).count()
+        self.save()

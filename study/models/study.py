@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
 
 
 class Study(models.Model):
@@ -15,7 +16,8 @@ class Study(models.Model):
         related_name="studies",
         on_delete=models.CASCADE,
     )  # 조회한 user
-    studied_at = models.DateTimeField(
+    count = models.PositiveBigIntegerField(default=0)
+    studied_at = models.DateField(
         verbose_name=_("studied at"),
         auto_now_add=True,
     )  # 조회한 일자
@@ -26,3 +28,14 @@ class Study(models.Model):
         verbose_name = "Study"
         verbose_name_plural = "Studys"
         db_table = "studies"
+
+    @classmethod
+    def add_study_history(cls, article, user):
+        study, _ = cls.objects.get_or_create(
+            article=article,
+            user=user,
+            studied_at=now(),
+        )
+        study.count += 1
+
+        study.save()

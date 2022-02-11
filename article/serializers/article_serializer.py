@@ -27,6 +27,8 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "title",
             "content",
             "tags",
+            "study_count",
+            "feedback_count",
             "comments",
             "created_at",
             "updated_at",
@@ -35,6 +37,8 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
         read_only_fields = [
             "id",
             "user",
+            "study_count",
+            "feedback_count",
             "comments",
             "created_at",
             "updated_at",
