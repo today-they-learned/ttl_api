@@ -19,8 +19,9 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     queryset = Article.objects.all()
     authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
-    filter_backends = [filters.SearchFilter, TagsFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagsFilter]
     search_fields = ["title", "content"]
+    ordering_fields = "__all__"
     pagination_class = DefaultPagination
 
     def get(self, request, *args, **kwargs):
