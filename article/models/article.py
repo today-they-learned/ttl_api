@@ -1,7 +1,6 @@
 from django.db import models
 from user.models import User
 from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import now
 from taggit.managers import TaggableManager
 
 
@@ -43,7 +42,12 @@ class Article(models.Model):
         blank=True,
         null=True,
     )
-    study_count = models.PositiveIntegerField(default=0)  #조회수
+    study_count = models.PositiveIntegerField(
+        default=0,
+    )  # 조회수
+    feedback_count = models.PositiveIntegerField(
+        default=0,
+    )  # 받은 피드백 수
     score = models.IntegerField(
         verbose_name=_("score"),
         default=0,
