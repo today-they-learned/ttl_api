@@ -230,3 +230,8 @@ CORS_ALLOW_CREDENTIALS = True
 SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
+]
