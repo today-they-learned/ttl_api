@@ -3,6 +3,7 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 from tag.serializers import TagListSerializerField, TaggitSerializer
 from article.models import Article
 from comment.serializers import CommentSerializer
+from user.serializers import UserSerializer
 
 
 class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
@@ -14,6 +15,9 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
     )
     comments = CommentSerializer(
         many=True,
+        read_only=True,
+    )
+    user = UserSerializer(
         read_only=True,
     )
 
