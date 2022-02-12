@@ -4,7 +4,7 @@ from article.models import Article
 from user.models import User
 
 
-@background(schedule=20)
+@background(schedule=5)
 def collect_github_til_task(user_id, repository):
     user = User.objects.filter(id=user_id).first()
 
