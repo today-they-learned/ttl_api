@@ -4,6 +4,10 @@ from rest_framework import filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.decorators import api_view
+
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 
 from article.filters import TagsFilter
 from article.serializers.article_serializer import ArticleSerializer
@@ -24,13 +28,21 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     ordering_fields = "__all__"
     pagination_class = DefaultPagination
 
-    def get(self, request, *args, **kwargs):
-        """GET: /api/articles/
-        Article 목록
+    @swagger_auto_schema(
+        operation_description="""
+            GET: /api/articles/
+            Article 목록
+
+            ### params
+            - tab
+                - follow: 팔로우한 유저의 글만 반환됨.
+                - bookmark: 북마크한 글만 반환됨.
+                - study: 조회한 글 목록이 반환됨.
+            - user_id
         """
-
+    )
+    def get(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-
         tab = request.GET.get("tab")
         user_id = request.GET.get("user_id")
 
