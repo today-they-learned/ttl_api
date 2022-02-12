@@ -70,6 +70,8 @@ THIRDPART_APPS = [
     "taggit_serializer",
     # django-cors-header
     "corsheaders",
+    # django-background-task
+    "background_task",
 ]
 
 DJANGO_APPS = [
