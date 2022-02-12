@@ -4,7 +4,6 @@ from rest_framework import filters
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.decorators import api_view
 
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
