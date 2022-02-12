@@ -194,11 +194,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-if DEBUG:
-    REST_FRAMEWORK["DEFAULT_AUTHENTICATION_CLASSES"].append(
-        "rest_framework.authentication.SessionAuthentication"
-    )
-
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "user.serializers.UserSerializer",
