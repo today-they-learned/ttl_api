@@ -26,6 +26,9 @@ class UserSerializer(
         fields = [
             "id",
             "email",
+            "introduce",
+            "repository",
+            "subscribe_recommended_mail",
             "tags",
             "facebook_account",
             "instagram_account",
