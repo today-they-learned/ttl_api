@@ -1,8 +1,11 @@
+from django.db.models import Count
 from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework import serializers
 
 from tag.serializers import TagListSerializerField, TaggitSerializer
-from article.models import Article
+from article.models import Article, Feedback
 from comment.serializers import CommentSerializer
+from user.serializers import UserSerializer
 
 
 class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
@@ -16,6 +19,10 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
         many=True,
         read_only=True,
     )
+    user = UserSerializer(
+        read_only=True,
+    )
+    feedback = serializers.SerializerMethodField()
 
     class Meta:
         """Meta definition for ArticleSerializer."""
@@ -29,6 +36,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "tags",
             "study_count",
             "feedback_count",
+            "feedback",
             "comments",
             "created_at",
             "updated_at",
@@ -39,7 +47,16 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "user",
             "study_count",
             "feedback_count",
+            "feedback",
             "comments",
             "created_at",
             "updated_at",
         ]
+
+    def get_feedback(self, obj):
+        return (
+            Feedback.objects.filter(article=obj)
+            .values("category")
+            .annotate(total=Count("category"))
+            .order_by("-total")
+        )
