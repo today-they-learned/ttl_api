@@ -1,10 +1,9 @@
 import logging
 
 from django.views.generic.base import View
-from braces.views import CsrfExemptMixin
 
 
-class BaseView(CsrfExemptMixin, View):
+class BaseView(View):
     """BaseView"""
 
     logger = logging.getLogger(__name__)
