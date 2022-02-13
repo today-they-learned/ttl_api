@@ -24,4 +24,6 @@ def collect_github_til(sender, instance, **kwargs):
     if current_user.repository and (
         previous_user is None or current_user.repository != previous_user.repository
     ):
-        collect_github_til_task(current_user.id, current_user.repository)
+        collect_github_til_task.subtask(
+            current_user.id, current_user.repository
+        ).apply_async()

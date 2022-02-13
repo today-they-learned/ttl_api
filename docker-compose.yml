@@ -14,7 +14,7 @@ services:
     volumes:
       - ./backups:/home/backups
     command: -p ${POSTGRES_PORT}
-  web:
+  web: &python
     build:
       context: .
       dockerfile: Dockerfile
@@ -32,6 +32,8 @@ services:
       - .:/web
     depends_on:
       - db
+      - rabbitmq
+      - celery_worker
   nginx:
     image: nginx
     container_name: nginx_service
@@ -43,3 +45,33 @@ services:
       - "80:80"
     depends_on:
       - web
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    expose:
+      - "15672"
+  celery_worker:
+    <<: *python
+    container_name: 'backend_celery_worker'
+    command: celery -A config worker --loglevel=info
+    ports: []
+    depends_on:
+      - rabbitmq
+      - db
+  celery_beat:
+    <<: *python
+    container_name: 'backend_celery_beat'
+    command: celery -A config beat --loglevel=info
+    ports: []
+    depends_on:
+      - rabbitmq
+      - db
+  flower:
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq
+      - FLOWER_PORT=5555
+    ports:
+      - 5555:5555
