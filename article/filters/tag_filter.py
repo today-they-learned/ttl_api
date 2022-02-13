@@ -9,6 +9,6 @@ class TagFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         tag = request.query_params.get("tag", None)
         if tag:
-            queryset = queryset.filter(tags__name__icontains=tag).distinct()
+            queryset = queryset.filter(tags__name__iexact=tag).distinct()
 
         return queryset
