@@ -7,7 +7,7 @@ from user.models import Grass,User
 from user.serializers import GrassSerializer
 from django.shortcuts import get_object_or_404
 
-class GrassRetrieveAPIView(BaseView, ListAPIView):
+class GrassListAPIView(BaseView, ListAPIView):
     serializer_class = GrassSerializer
     queryset = Grass.objects.all()
     
