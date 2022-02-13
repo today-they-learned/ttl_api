@@ -17,11 +17,14 @@ def collect_velog_til_task(user_id, velog_username):
     results = analyzation.results
 
     for result in results:
-        Article.objects.get_or_create(
+        article, _ = Article.objects.get_or_create(
             user=user,
             source="vl",
             title=result["title"],
             content=result["content"],
-            tags=result["tags"],
             created_at=result["created_at"],
         )
+
+        for tag in result["tags"]:
+            if len(tag) > 0:
+                article.tags.add(tag)

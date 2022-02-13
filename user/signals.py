@@ -24,9 +24,7 @@ def collect_github_til(sender, instance, **kwargs):
     if current_user.repository and (
         previous_user is None or current_user.repository != previous_user.repository
     ):
-        collect_github_til_task.subtask(
-            current_user.id, current_user.repository
-        ).apply_async()
+        collect_github_til_task.apply_async((current_user.id, current_user.repository))
 
 
 @receiver(pre_save, sender=User)
@@ -41,6 +39,6 @@ def collect_velog_til(sender, instance, **kwargs):
         previous_user is None
         or current_user.velog_username != previous_user.velog_username
     ):
-        collect_velog_til_task.subtask(
-            current_user.id, current_user.velog_username
-        ).apply_async()
+        collect_velog_til_task.apply_async(
+            (current_user.id, current_user.velog_username)
+        )
