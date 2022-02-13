@@ -5,10 +5,9 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 
-from article.filters import TagsFilter
+from article.filters import TagFilter
 from article.serializers.article_serializer import ArticleSerializer
 from article.models import Article, Bookmark
 from config.pagination import DefaultPagination
@@ -22,8 +21,8 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     queryset = Article.objects.all()
     authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagsFilter]
-    search_fields = ["title", "content"]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagFilter]
+    search_fields = ["title", "content", "tags__name"]
     ordering_fields = "__all__"
     pagination_class = DefaultPagination
 

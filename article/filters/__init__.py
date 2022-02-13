@@ -1,1 +1,1 @@
-from .tags_filter import TagsFilter
+from .tag_filter import TagFilter
