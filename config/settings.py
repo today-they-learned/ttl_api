@@ -234,5 +234,6 @@ SWAGGER_SETTINGS = {
 
 CSRF_TRUSTED_ORIGINS = [
     "https://todaytheylearn.com",
+    "https://api.todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
 ]
