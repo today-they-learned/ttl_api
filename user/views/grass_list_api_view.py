@@ -22,5 +22,3 @@ class GrassListAPIView(BaseView, ListAPIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
-
-        
