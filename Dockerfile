@@ -15,6 +15,7 @@ WORKDIR /web
 RUN apt-get update -y \
   && apt-get -f install \
   && apt-get upgrade -y \
+  && apt-get -y install libpq-dev --no-install-recommends apt-utils \
   && pip install --upgrade pip
 
 COPY --from=package /root/wheels /root/wheels

@@ -1,10 +1,10 @@
-from background_task import background
 from utils.analyze_github_til import AnalyzeGithubTil
 from article.models import Article
 from user.models import User
+from celery import shared_task
 
 
-@background(schedule=5)
+@shared_task
 def collect_github_til_task(user_id, repository):
     user = User.objects.filter(id=user_id).first()
 
