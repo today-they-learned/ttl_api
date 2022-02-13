@@ -237,3 +237,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://api.todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
 ]
+
+MAX_ATTEMPTS = 2
+MAX_RUN_TIME = 1200
+BACKGROUND_TASK_RUN_ASYNC = True
