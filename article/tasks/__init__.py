@@ -1,1 +1,2 @@
 from .collect_github_til_task import collect_github_til_task
+from .collect_velog_til_task import collect_velog_til_task
