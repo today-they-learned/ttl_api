@@ -37,6 +37,7 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                 - bookmark: 북마크한 글만 반환됨.
                 - study: 조회한 글 목록이 반환됨.
             - user_id
+            - tag
         """
     )
     def get(self, request, *args, **kwargs):
