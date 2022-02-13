@@ -68,6 +68,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )  # 유저의 TIL Github Repository, username/repo_name 형식으로 담아져야 합니다.
+    velog_username = models.TextField(
+        verbose_name=_("velog username"),
+        null=True,
+        blank=True,
+    )
     subscribe_recommended_mail = models.BooleanField(
         verbose_name=_("whether subscribe recommended mail"),
         default=False,

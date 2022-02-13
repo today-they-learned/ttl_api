@@ -30,9 +30,9 @@ class AnalyzeVelogTIL:
 
             result = {
                 "title": title.strip(),
-                "body": body.strip(),
+                "content": body.strip(),
                 "tags": tags.strip().split(","),
-                "released_at": released_at.strip(),
+                "created_at": released_at.strip(),
             }
             self.results.append(result)
 
