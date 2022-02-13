@@ -70,8 +70,6 @@ THIRDPART_APPS = [
     "taggit_serializer",
     # django-cors-header
     "corsheaders",
-    # django-background-task
-    "background_task",
 ]
 
 DJANGO_APPS = [
@@ -238,6 +236,13 @@ CSRF_TRUSTED_ORIGINS = [
     "https://todaytheylearned.netlify.app",
 ]
 
-MAX_ATTEMPTS = 2
-MAX_RUN_TIME = 1200
-BACKGROUND_TASK_RUN_ASYNC = True
+CELERY_TIMEZONE = "Asia/Seoul"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+# BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
