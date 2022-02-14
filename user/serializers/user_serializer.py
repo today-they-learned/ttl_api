@@ -15,9 +15,15 @@ class UserSerializer(
     """Serializer definition for User Model."""
 
     tags = TagListSerializerField()
-    facebook_account = FacebookAccountSerializer()
-    instagram_account = InstagramAccountSerializer()
-    twitter_account = TwitterAccountSerializer()
+    facebook_account = FacebookAccountSerializer(
+        required=False,
+    )
+    instagram_account = InstagramAccountSerializer(
+        required=False,
+    )
+    twitter_account = TwitterAccountSerializer(
+        required=False,
+    )
 
     class Meta:
         """Meta definition for UserSerializer."""
