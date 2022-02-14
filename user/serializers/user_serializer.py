@@ -14,7 +14,9 @@ class UserSerializer(
 ):
     """Serializer definition for User Model."""
 
-    tags = TagListSerializerField()
+    tags = TagListSerializerField(
+        required=False,
+    )
     facebook_account = FacebookAccountSerializer(
         required=False,
     )

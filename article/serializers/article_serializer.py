@@ -21,6 +21,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
     )
     user = UserSerializer(
         read_only=True,
+        required=False,
     )
     feedback = serializers.SerializerMethodField()
 
