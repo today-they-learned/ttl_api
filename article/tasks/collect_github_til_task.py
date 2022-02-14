@@ -29,8 +29,8 @@ def collect_github_til_task(user_id, repository):
         article, is_created = Article.objects.get_or_create(
             user=user,
             source="gh",
-            title=title,
-            content=content,
+            title=str(title).strip(),
+            content=str(content).strip(),
         )
 
         if is_created:
