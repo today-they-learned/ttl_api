@@ -6,5 +6,12 @@ from user.models import Grass
 class GrassAdmin(admin.ModelAdmin):
     """Admin View for Grass"""
 
-    readonly_fields = ("created_at",)
+    list_display = (
+        "user",
+        "study_count",
+        "write_count",
+        "edit_count",
+        "created_at",
+    )
+
     ordering = ("created_at",)
