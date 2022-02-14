@@ -1,4 +1,5 @@
 from git import Repo
+from pydriller import Repository
 import os
 import shutil
 import aiofiles
@@ -11,6 +12,7 @@ class AnalyzeGithubTil:
         self.username = username
         self.repository = repository
         self.results = []
+        self.date = {}
 
     def clone_repositry(self):
         """Repository를 특정 디렉토리에 Clone 합니다."""
@@ -48,12 +50,31 @@ class AnalyzeGithubTil:
 
         asyncio.run(asyncio.wait(tasks))
 
+    def get_date(self):
+        """파일의 생성일자, 수정일자 딕셔너리"""
+        for commit in Repository(f'https://github.com/{self.username}/{self.repository}').traverse_commits():
+            file_date = str(commit.committer_date)
+
+            for file in commit.modified_files:
+                file_path = file.new_path or file.old_path
+
+                if file.filename == "README.md" or file.filename == "readme.md":  # readme 파일을 제외
+                    continue
+
+                if file_path in self.date:
+                    self.date[file_path].append(file_date)
+                    continue
+
+                self.date[file_path] = [file_date]
+
     def __del__(self):
         """작업을 마치면, 클론한 디렉토리를 제거합니다."""
         shutil.rmtree(f".anaylze\{self.username}\{self.repository}", ignore_errors=True)
 
 
 if __name__ == "__main__":
-    t = AnalyzeGithubTil("shinkeonkim", "TIL")
+    t = AnalyzeGithubTil("Jihyun-Choi", "TIL_test")
     t.perform()
+    t.get_date()
+    print(t.date)
     print(t.results)
