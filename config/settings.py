@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from typing import List
 import environ
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -25,7 +26,17 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env("DEBUG") == "True"
 
-ALLOWED_HOSTS: List[str] = ["*"]
+ALLOWED_HOSTS: List[str] = [
+    "localhost",
+    "127.0.0.1",
+    "0.0.0.0",
+    "15.164.165.131",
+    "3.38.58.82",
+    "ttl_api_web",
+    "https://api.todaytheylearn.com",
+    "http://api.todaytheylearn.com",
+    "api.todaytheylearn.com",
+]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
 
@@ -35,6 +46,10 @@ USE_DOCKER = env("USE_DOCKER") == "True" or False
 
 CUSTOM_APPS = [
     "user",
+    "article",
+    "comment",
+    "study",
+    "tag",
 ]
 
 THIRDPART_APPS = [
@@ -74,7 +89,6 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -154,8 +168,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = "/static/"
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -168,17 +187,22 @@ AUTH_USER_MODEL = "user.User"
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
+    ],
 }
+
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "user.serializers.UserSerializer",
 }
 
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
@@ -197,5 +221,28 @@ SIMPLE_JWT = {
 CORS_ORIGIN_WHITELIST = [
     f"http://127.0.0.1:{FRONT_DEV_PORT}",
     f"http://localhost:{FRONT_DEV_PORT}",
+    "https://todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://todaytheylearn.com",
+    "https://api.todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
+]
+
+CELERY_TIMEZONE = "Asia/Seoul"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_BROKER_URL = "amqp://guest:guest@rabbitmq"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+
+# BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'

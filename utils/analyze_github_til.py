@@ -4,6 +4,8 @@ import shutil
 import aiofiles
 import asyncio
 
+"""github_collector mac version"""
+
 
 class AnalyzeGithubTil:
     def __init__(self, username, repository):
@@ -13,10 +15,14 @@ class AnalyzeGithubTil:
 
     def clone_repositry(self):
         """Repository를 특정 디렉토리에 Clone 합니다."""
-        Repo.clone_from(
-            f"https://github.com/{self.username}/{self.repository}",
-            f"./anaylze/{self.username}/{self.repository}",
-        )
+        try:
+            Repo.clone_from(
+                f"https://github.com/{self.username}/{self.repository}",
+                f"./anaylze/{self.username}/{self.repository}",
+            )
+            return True
+        except:
+            return False
 
     def get_markdown_file_path_list(self):
         """Clone한 레포지터리를 탐색하면서 md 파일 목록을 뽑아냅니다."""
@@ -36,11 +42,16 @@ class AnalyzeGithubTil:
 
     def perform(self):
         """메인 job 수행 메서드"""
-        self.clone_repositry()
+        is_cloned = self.clone_repositry()
+        if not is_cloned:
+            return
+
         path_list = self.get_markdown_file_path_list()
 
         tasks = set()
         for path, file_name in path_list:
+            if file_name == "README.md" or file_name == "readme.md":  # readme 파일을 제외
+                continue
             tasks.add(self.get_file_content(path, file_name))
 
         asyncio.run(asyncio.wait(tasks))

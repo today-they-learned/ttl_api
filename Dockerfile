@@ -15,7 +15,12 @@ WORKDIR /web
 RUN apt-get update -y \
   && apt-get -f install \
   && apt-get upgrade -y \
+  && apt-get -y install curl \
+  && apt-get -y install libpq-dev --no-install-recommends apt-utils \
   && pip install --upgrade pip
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get -qq install nodejs --yes
 
 COPY --from=package /root/wheels /root/wheels
 COPY requirements.txt .

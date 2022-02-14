@@ -4,8 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
-from taggit.managers import TaggableManager
 from django.utils.translation import gettext_lazy as _
+from taggit.managers import TaggableManager
 
 
 class UserManager(BaseUserManager):
@@ -68,6 +68,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )  # 유저의 TIL Github Repository, username/repo_name 형식으로 담아져야 합니다.
+    velog_username = models.TextField(
+        verbose_name=_("velog username"),
+        null=True,
+        blank=True,
+    )
     subscribe_recommended_mail = models.BooleanField(
         verbose_name=_("whether subscribe recommended mail"),
         default=False,
@@ -81,7 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(
         verbose_name=_("created at"),
         auto_now_add=True,
-    )  # 유저 레코드가 생성된 일저
+    )  # 유저 레코드가 생성 일자
     updated_at = models.DateTimeField(
         verbose_name=_("updated at"),
         auto_now=True,
