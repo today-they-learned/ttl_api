@@ -12,12 +12,17 @@ class Grass(models.Model):
     study_count = models.PositiveIntegerField(default=0)
     write_count = models.PositiveIntegerField(default=0)
     edit_count = models.PositiveIntegerField(default=0)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField()
 
     class Meta:
         verbose_name = "Grass"
         verbose_name_plural = "Grasses"
         db_table = "grasses"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "created_at"], name="user_created_at_unique_index"
+            )
+        ]
 
     @classmethod
     def increment_study_count(cls, user):
