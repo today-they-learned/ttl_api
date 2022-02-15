@@ -232,29 +232,13 @@ CORS_ORIGIN_WHITELIST = [
     "http://todaytheylearned.netlify.app",
     "https://todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
+    "http://api.todaytheylearn.com",
+    "https://api.todaytheylearn.com",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://0.0.0.0:3000",
-    "http://todaytheylearn.com",
-    "http://*.todaytheylearn.com",
-    "https://todaytheylearn.com",
-    "https://*.todaytheylearn.com",
-    "https://todaytheylearned.netlify.app",
-]
+CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://0.0.0.0:3000",
-    "http://todaytheylearn.com",
-    "http://*.todaytheylearn.com",
-    "https://todaytheylearn.com",
-    "https://*.todaytheylearn.com",
-    "https://todaytheylearned.netlify.app",
-]
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
 
 CELERY_TIMEZONE = "Asia/Seoul"
 CELERY_TASK_TRACK_STARTED = True
