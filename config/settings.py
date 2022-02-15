@@ -225,8 +225,9 @@ SWAGGER_SETTINGS = {
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
-    f"http://127.0.0.1:{FRONT_DEV_PORT}",
-    f"http://localhost:{FRONT_DEV_PORT}",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
     "http://todaytheylearn.com",
     "http://todaytheylearned.netlify.app",
     "https://todaytheylearn.com",
@@ -234,8 +235,9 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    f"http://127.0.0.1:{FRONT_DEV_PORT}",
-    f"http://localhost:{FRONT_DEV_PORT}",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
     "http://todaytheylearn.com",
     "http://*.todaytheylearn.com",
     "https://todaytheylearn.com",
@@ -244,8 +246,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    f"http://127.0.0.1:{FRONT_DEV_PORT}",
-    f"http://localhost:{FRONT_DEV_PORT}",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+    "http://0.0.0.0:3000",
     "http://todaytheylearn.com",
     "http://*.todaytheylearn.com",
     "https://todaytheylearn.com",
