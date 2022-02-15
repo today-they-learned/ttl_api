@@ -37,6 +37,7 @@ class UserSerializer(
             "introduce",
             "repository",
             "subscribe_recommended_mail",
+            "avatar",
             "tags",
             "velog_username",
             "facebook_account",

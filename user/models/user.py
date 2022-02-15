@@ -1,3 +1,4 @@
+import black
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -60,6 +61,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )  # 유저의 소개말
+    avatar = models.ImageField(
+        verbose_name=_("avatar"),
+        null=True,
+        blank=True,
+    )
     tags = TaggableManager(
         blank=True,
     )  # 관심 태그 목록
