@@ -232,6 +232,14 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://todaytheylearn.com",
+    "http://*.todaytheylearn.com",
+    "https://todaytheylearn.com",
+    "https://*.todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
+]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://todaytheylearn.com",
     "http://*.todaytheylearn.com",
