@@ -1,5 +1,3 @@
-import os
-
 from datetime import datetime
 from utils.analyze_github_til import AnalyzeGithubTil
 from article.models import Article
