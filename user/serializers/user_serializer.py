@@ -50,7 +50,6 @@ class UserSerializer(
         read_only_fields = [
             "id",
             "email",
-            "username",
             "created_at",
             "updated_at",
         ]
