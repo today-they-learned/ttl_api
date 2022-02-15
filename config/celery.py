@@ -22,10 +22,10 @@ def debug_task(self):
 app.conf.beat_schedule = {
     "refresh-github-every-45-minute": {
         "task": "refresh_user_collect_github",
-        "schedule": crontab(minute="*/45"),
+        "schedule": crontab(minute=0),
     },
     "refresh-velog-every-15-minute": {
         "task": "collect_velog_til_task",
-        "schedule": crontab(minute="*/15"),
+        "schedule": crontab(minute=30),
     },
 }
