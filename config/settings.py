@@ -219,10 +219,10 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    f"http://127.0.0.1:{FRONT_DEV_PORT}",
-    f"http://localhost:{FRONT_DEV_PORT}",
-    "https://todaytheylearn.com",
-    "https://todaytheylearned.netlify.app",
+    f"127.0.0.1:{FRONT_DEV_PORT}",
+    f"localhost:{FRONT_DEV_PORT}",
+    "todaytheylearn.com",
+    "todaytheylearned.netlify.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -231,8 +231,10 @@ SWAGGER_SETTINGS = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
+    "http://todaytheylearn.com",
+    "http://*.todaytheylearn.com",
     "https://todaytheylearn.com",
-    "https://api.todaytheylearn.com",
+    "https://*.todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
 ]
 
