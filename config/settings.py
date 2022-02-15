@@ -218,6 +218,12 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
 }
 
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+}
+
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ORIGIN_WHITELIST = [
     f"http://127.0.0.1:{FRONT_DEV_PORT}",
     f"http://localhost:{FRONT_DEV_PORT}",
@@ -226,13 +232,10 @@ CORS_ORIGIN_WHITELIST = [
     "https://todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
 ]
-CORS_ALLOW_CREDENTIALS = True
-
-SWAGGER_SETTINGS = {
-    "USE_SESSION_AUTH": False,
-}
 
 CORS_ALLOWED_ORIGINS = [
+    f"http://127.0.0.1:{FRONT_DEV_PORT}",
+    f"http://localhost:{FRONT_DEV_PORT}",
     "http://todaytheylearn.com",
     "http://*.todaytheylearn.com",
     "https://todaytheylearn.com",
@@ -241,6 +244,8 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    f"http://127.0.0.1:{FRONT_DEV_PORT}",
+    f"http://localhost:{FRONT_DEV_PORT}",
     "http://todaytheylearn.com",
     "http://*.todaytheylearn.com",
     "https://todaytheylearn.com",
