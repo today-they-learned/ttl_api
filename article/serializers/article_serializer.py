@@ -35,6 +35,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "title",
             "content",
             "tags",
+            "thumbnail",
             "study_count",
             "feedback_count",
             "feedback",
