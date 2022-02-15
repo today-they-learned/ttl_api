@@ -36,7 +36,9 @@ class CommentCreateAPIView(BaseView, CreateAPIView):
         ]
     )
     def post(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, id=kwargs["article_id"])
+        article_id = request.query_params.get("article_id", None)
+        article = get_object_or_404(Article, id=article_id)
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer, article)
