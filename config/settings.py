@@ -219,10 +219,12 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    f"127.0.0.1:{FRONT_DEV_PORT}",
-    f"localhost:{FRONT_DEV_PORT}",
-    "todaytheylearn.com",
-    "todaytheylearned.netlify.app",
+    f"http://127.0.0.1:{FRONT_DEV_PORT}",
+    f"http://localhost:{FRONT_DEV_PORT}",
+    "http://todaytheylearn.com",
+    "http://todaytheylearned.netlify.app",
+    "https://todaytheylearn.com",
+    "https://todaytheylearned.netlify.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
