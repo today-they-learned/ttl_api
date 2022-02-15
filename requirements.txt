@@ -27,6 +27,7 @@ django-celery-beat==2.2.1
 django-compat==1.0.15
 django-cors-headers==3.11.0
 django-environ==0.8.1
+django-extensions==3.1.5
 django-filter==21.1
 django-rest-auth==0.9.5
 django-rest-framework==0.1.0

@@ -70,6 +70,8 @@ THIRDPART_APPS = [
     "taggit_serializer",
     # django-cors-header
     "corsheaders",
+    # django-extensions
+    "django_extensions",
 ]
 
 DJANGO_APPS = [
@@ -250,3 +252,12 @@ CELERY_RESULT_SERIALIZER = "json"
 
 # BROKER_URL = 'redis://localhost:6379'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# GRAPH_MODELS = {
+#     "app_labels": CUSTOM_APPS + ["taggit"],
+# }
+
+# GRAPH_MODELS = {
+#     "all_applications": False,
+#     "group_models": True,
+# }
