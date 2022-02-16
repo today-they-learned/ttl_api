@@ -1,2 +1,4 @@
 from .collect_github_til_task import collect_github_til_task
 from .collect_velog_til_task import collect_velog_til_task
+from .refresh_user_collect_github import refresh_user_collect_github
+from .refresh_user_collect_velog import refresh_user_collect_velog
