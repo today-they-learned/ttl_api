@@ -21,8 +21,9 @@ class ArticleAdmin(admin.ModelAdmin):
         "updated_at",
     )
     actions = [
-        "reset_study_count",
+        "reset_bookmark_count",
         "reset_feedback_count",
+        "reset_study_count",
         "reset_score",
     ]
 
@@ -39,6 +40,13 @@ class ArticleAdmin(admin.ModelAdmin):
 
         for article in articles:
             article.reset_feedback_count()
+
+    @admin.action(description="bookmark count 초기화")
+    def reset_bookmark_count(modeladmin, request, queryset):
+        articles = queryset
+
+        for article in articles:
+            article.reset_bookmark_count()
 
     @admin.action(description="score 초기화")
     def reset_score(modeladmin, request, queryset):

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from taggit.managers import TaggableManager
 from study.models import Study
 from article.models.feedback import Feedback
+from article.models.bookmark import Bookmark
 
 SOURCE_CHOICES = [
     ("tl", "TTL"),
@@ -49,6 +50,9 @@ class Article(models.Model):
     feedback_count = models.PositiveIntegerField(
         default=0,
     )  # 받은 피드백 수
+    bookmark_count = models.PositiveBigIntegerField(
+        default=0,
+    )
     score = models.IntegerField(
         verbose_name=_("score"),
         default=0,
@@ -80,13 +84,25 @@ class Article(models.Model):
         self.save()
         self.reset_score()
 
+    def increment_bookmark_count(self):
+        self.bookmark_count += 1
+        self.save()
+        self.reset_score()
+
     def decrement_feedback_count(self):
         self.feedback_count -= 1
         self.save()
         self.reset_score()
 
+    def decrement_bookmark_count(self):
+        self.bookmark_count -= 1
+        self.save()
+        self.reset_score()
+
     def reset_score(self):
-        self.score = self.study_count + self.feedback_count * 15
+        self.score = (
+            self.study_count + self.bookmark_count * 15 + self.feedback_count * 15
+        )
         self.save()
 
     def reset_study_count(self):
@@ -96,3 +112,6 @@ class Article(models.Model):
     def reset_feedback_count(self):
         self.feedback_count = Feedback.objects.filter(article=self).count()
         self.save()
+
+    def reset_bookmark_count(self):
+        self.bookmark_count = Bookmark.objects.filter(article=self).count()
