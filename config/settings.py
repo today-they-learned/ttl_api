@@ -190,11 +190,11 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
 }
-
 
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "user.serializers.UserSerializer",
@@ -222,8 +222,6 @@ SIMPLE_JWT = {
 SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 

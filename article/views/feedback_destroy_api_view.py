@@ -1,8 +1,5 @@
 from rest_framework.response import Response
 from rest_framework import generics, mixins, status
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.settings import api_settings
 from rest_framework.permissions import IsAuthenticated
 
 from config.views import BaseView
@@ -23,7 +20,6 @@ class FeedbackDestroyAPIView(
 
     serializer_class = FeedbackSerializer
     queryset = Feedback.objects.all()
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticated, IsArticleEditableOrDestroyable]
 
     def delete(self, request, article_id):

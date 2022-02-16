@@ -1,7 +1,5 @@
 from rest_framework.response import Response
 from rest_framework import generics, status
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from config.views import BaseView
@@ -14,7 +12,6 @@ from article.models import Article
 class BookmarkCreateAPIView(BaseView, generics.CreateAPIView):
     serializer_class = BookmarkSerializer
     queryset = Bookmark.objects.all()
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def create(self, request, article_id, *args, **kwargs):

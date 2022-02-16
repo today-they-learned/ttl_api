@@ -1,7 +1,4 @@
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
 
 from config.views import BaseView
 from article.models import Article
@@ -15,7 +12,6 @@ from rest_framework.response import Response
 class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all()
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsArticleEditableOrDestroyable]
 
     def get(self, request, *args, **kwargs):

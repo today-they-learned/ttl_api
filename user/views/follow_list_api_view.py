@@ -1,6 +1,4 @@
 from rest_framework.generics import ListAPIView, get_object_or_404
-from rest_framework.authentication import SessionAuthentication
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
@@ -10,14 +8,13 @@ from user.models import User
 
 
 class FollowingListView(BaseView, ListAPIView):
-    """ FollowingListView
+    """FollowingListView
     GET: api/users/user/follwing
     - 현재 유저가 Following(create) 목록(list)이 반환된다.
     """
-    serializer_class = FollowSerializer
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
+    serializer_class = FollowSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, id, *args, **kwargs):
         user = get_object_or_404(User, id=id)
@@ -33,12 +30,12 @@ class FollowingListView(BaseView, ListAPIView):
 
 
 class FollowerListView(BaseView, ListAPIView):
-    """ FollowerListView
+    """FollowerListView
     GET: api/users/user/follwing
     - 현재 유저의 Follower(create) 목록(list)이 반환된다.
     """
+
     serializer_class = FollowSerializer
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, id, *args, **kwargs):

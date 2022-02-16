@@ -1,7 +1,5 @@
 from rest_framework import status
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import CreateAPIView
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -13,7 +11,6 @@ from config.views import BaseView
 class UploadImageCreateAPIView(BaseView, CreateAPIView):
     serializer_class = UploadImageSerializer
     queryset = UploadImage.objects.all()
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def post(self, request, *args, **kwargs):

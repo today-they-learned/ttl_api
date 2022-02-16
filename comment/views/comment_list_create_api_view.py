@@ -2,10 +2,8 @@ from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import get_object_or_404
 from rest_framework import status
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from comment.serializers import CommentSerializer
@@ -18,7 +16,6 @@ from config.views import BaseView
 class CommentListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = CommentSerializer
     queryset = Comment.objects.all().order_by("created_at")
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer, article):

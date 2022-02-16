@@ -1,7 +1,5 @@
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import ListCreateAPIView
 from rest_framework import filters
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -19,7 +17,6 @@ from user.models import Follow, Grass
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = ArticleSerializer
     queryset = Article.objects.all().prefetch_related("bookmarks")
-    authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagFilter]
     search_fields = ["title", "content"]
