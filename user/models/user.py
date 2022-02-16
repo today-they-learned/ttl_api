@@ -84,6 +84,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=False,
         null=False,
     )  # 추천 메일을 구독했는지 여부를 나타냅니다.
+    facebook_account = models.TextField(
+        verbose_name=_("facebook_account"),
+        null=True,
+        blank=True,
+    )
+    instagram_account = models.TextField(
+        verbose_name=_("instagram_account"),
+        null=True,
+        blank=True,
+    )
+    twitter_account = models.TextField(
+        verbose_name=_("twitter_account"),
+        null=True,
+        blank=True,
+    )
+
     study_groups = models.ManyToManyField(
         "user.StudyGroup",
         related_name="users",

@@ -4,10 +4,6 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 from user.models import User
 from tag.serializers import TagListSerializerField, TaggitSerializer
 
-from .facebook_account_serializer import FacebookAccountSerializer
-from .instagram_account_serializer import InstagramAccountSerializer
-from .twitter_account_serializer import TwitterAccountSerializer
-
 
 class UserSerializer(
     TaggitSerializer, WritableNestedModelSerializer, HyperlinkedModelSerializer
@@ -15,15 +11,6 @@ class UserSerializer(
     """Serializer definition for User Model."""
 
     tags = TagListSerializerField(
-        required=False,
-    )
-    facebook_account = FacebookAccountSerializer(
-        required=False,
-    )
-    instagram_account = InstagramAccountSerializer(
-        required=False,
-    )
-    twitter_account = TwitterAccountSerializer(
         required=False,
     )
 
