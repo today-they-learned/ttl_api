@@ -12,9 +12,9 @@ from user.views import (
 )
 
 urlpatterns = [
-    path("user/", UserDestoryAPIView.as_view()),
     path("", include("dj_rest_auth.urls")),
     path("", include("dj_rest_auth.registration.urls")),
+    path("user/destroy/", UserDestoryAPIView.as_view()),
     path("api-token-auth/", obtain_auth_token),
     path("<int:id>/", UserRetrieveAPIView.as_view()),
     path("<int:id>/follow", FollowCreateAPIView.as_view()),
