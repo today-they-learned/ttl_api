@@ -8,9 +8,11 @@ from user.views import (
     FollowerListView,
     UserRetrieveAPIView,
     GrassListAPIView,
+    UserDestoryAPIView,
 )
 
 urlpatterns = [
+    path("user/", UserDestoryAPIView.as_view()),
     path("", include("dj_rest_auth.urls")),
     path("", include("dj_rest_auth.registration.urls")),
     path("api-token-auth/", obtain_auth_token),
