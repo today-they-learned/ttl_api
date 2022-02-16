@@ -223,6 +223,8 @@ SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
@@ -231,16 +233,10 @@ CORS_ORIGIN_WHITELIST = [
     "http://0.0.0.0:3000",
     "http://todaytheylearn.com",
     "http://todaytheylearned.netlify.app",
+    "http://api.todaytheylearn.com",
     "https://todaytheylearn.com",
     "https://todaytheylearned.netlify.app",
-    "http://api.todaytheylearn.com",
     "https://api.todaytheylearn.com",
-    "todaytheylearn.com",
-    "todaytheylearned.netlify.app",
-    "todaytheylearn.com",
-    "todaytheylearned.netlify.app",
-    "api.todaytheylearn.com",
-    "api.todaytheylearn.com",
 ]
 
 CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
