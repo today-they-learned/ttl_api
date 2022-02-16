@@ -235,6 +235,12 @@ CORS_ORIGIN_WHITELIST = [
     "https://todaytheylearned.netlify.app",
     "http://api.todaytheylearn.com",
     "https://api.todaytheylearn.com",
+    "http://todaytheylearn.com/",
+    "http://todaytheylearned.netlify.app/",
+    "https://todaytheylearn.com/",
+    "https://todaytheylearned.netlify.app/",
+    "http://api.todaytheylearn.com/",
+    "https://api.todaytheylearn.com/",
 ]
 
 CORS_ALLOWED_ORIGINS = CORS_ORIGIN_WHITELIST
