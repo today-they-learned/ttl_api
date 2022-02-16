@@ -18,7 +18,7 @@ from user.models import Follow, Grass
 
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().prefetch_related("bookmarks")
     authentication_classes = [SessionAuthentication, JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagFilter]

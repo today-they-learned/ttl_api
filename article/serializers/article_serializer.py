@@ -24,6 +24,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
         required=False,
     )
     feedback = serializers.SerializerMethodField()
+    is_bookmarked = serializers.SerializerMethodField()
 
     class Meta:
         """Meta definition for ArticleSerializer."""
@@ -39,6 +40,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "study_count",
             "feedback_count",
             "bookmark_count",
+            "is_bookmarked",
             "feedback",
             "comments",
             "created_at",
@@ -51,6 +53,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "study_count",
             "feedback_count",
             "bookmark_count",
+            "is_bookmarked",
             "feedback",
             "comments",
             "created_at",
@@ -64,3 +67,8 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             .annotate(total=Count("category"))
             .order_by("-total")
         )
+
+    def get_is_bookmarked(self, obj):
+        user = self.context["request"].user
+
+        return obj.bookmarks.filter(user=user).exists()
