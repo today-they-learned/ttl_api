@@ -15,10 +15,6 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
         required=False,
         read_only=False,
     )
-    comments = CommentSerializer(
-        many=True,
-        read_only=True,
-    )
     user = UserSerializer(
         read_only=True,
         required=False,
@@ -42,7 +38,6 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "bookmark_count",
             "is_bookmarked",
             "feedback",
-            "comments",
             "created_at",
             "updated_at",
         ]
@@ -55,7 +50,6 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "bookmark_count",
             "is_bookmarked",
             "feedback",
-            "comments",
             "created_at",
             "updated_at",
         ]

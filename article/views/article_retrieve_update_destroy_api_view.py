@@ -9,6 +9,7 @@ from article.serializers.article_serializer import ArticleSerializer
 from article.permissions import IsArticleEditableOrDestroyable
 from user.models import Grass
 from study.models import Study
+from rest_framework.response import Response
 
 
 class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView):
@@ -26,7 +27,8 @@ class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView
             Grass.increment_study_count(user)
             article.increment_study_count()
 
-        return self.retrieve(request, *args, **kwargs)
+        serializer = self.get_serializer(article)
+        return Response(serializer.data)
 
     def put(self, request, *args, **kwargs):
         Grass.increment_edit_count(self.current_user)
