@@ -261,3 +261,12 @@ CELERY_RESULT_SERIALIZER = "json"
 #     "all_applications": False,
 #     "group_models": True,
 # }
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
