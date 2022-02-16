@@ -69,6 +69,9 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
         )
 
     def get_is_bookmarked(self, obj):
-        user = self.context["request"].user
+        try:
+            user = self.context["request"].user
 
-        return obj.bookmarks.filter(user=user).exists()
+            return obj.bookmarks.filter(user=user).exists()
+        except:
+            return False
