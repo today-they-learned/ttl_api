@@ -1,5 +1,5 @@
 from user.models import User
-from collect_velog_til_task import collect_velog_til_task
+from article.tasks.collect_velog_til_task import collect_velog_til_task
 from celery import shared_task
 
 

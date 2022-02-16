@@ -1,5 +1,5 @@
 from user.models import User
-from collect_github_til_task import collect_github_til_task
+from article.tasks.collect_github_til_task import collect_github_til_task
 from celery import shared_task
 
 
