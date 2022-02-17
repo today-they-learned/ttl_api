@@ -63,7 +63,7 @@ services:
   celery_beat:
     <<: *python
     container_name: 'backend_celery_beat'
-    command: celery -A config beat --loglevel=info
+    command: celery -A config beat --scheduler django_celery_beat.schedulers:DatabaseScheduler
     ports: []
     depends_on:
       - rabbitmq
