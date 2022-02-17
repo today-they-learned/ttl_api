@@ -32,10 +32,14 @@ ALLOWED_HOSTS: List[str] = [
     "0.0.0.0",
     "15.164.165.131",
     "3.38.58.82",
+    "13.125.241.23",
     "ttl_api_web",
+    "http://dev.todaytheylearn.com/"
+    "https://dev.todaytheylearn.com/"
     "https://api.todaytheylearn.com",
     "http://api.todaytheylearn.com",
     "api.todaytheylearn.com",
+    "dev.todaytheylearn.com"
 ]
 
 FRONT_DEV_PORT = env("FRONT_DEV_PORT") or 3000
@@ -269,3 +273,5 @@ CELERY_RESULT_SERIALIZER = "json"
 #     "all_applications": False,
 #     "group_models": True,
 # }
+
+from rest_framework.authentication import SessionAuthentication
