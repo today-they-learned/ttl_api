@@ -25,7 +25,7 @@ urlpatterns = [
     path("<int:id>/follwing/", FollowingListView.as_view()),
     path("<int:id>/follwer/", FollowerListView.as_view()),
     path("<int:id>/grasses/", GrassListAPIView.as_view()),
-    path("user/repository", UserRepositoryUpdateApiView.as_view()),
-    path("user/subscribe_mail", UserSubscribeMailUpdateApiView.as_view()),
-    path("user/velog_username", UserVelogUsernameUpdateApiView.as_view()),
+    path("user/repository/", UserRepositoryUpdateApiView.as_view()),
+    path("user/subscribe_mail/", UserSubscribeMailUpdateApiView.as_view()),
+    path("user/velog_username/", UserVelogUsernameUpdateApiView.as_view()),
 ]
