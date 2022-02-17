@@ -4,7 +4,6 @@ from rest_framework import serializers
 
 from tag.serializers import TagListSerializerField, TaggitSerializer
 from article.models import Article, Feedback
-from comment.serializers import CommentSerializer
 from user.serializers import UserSerializer
 
 
