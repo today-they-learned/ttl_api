@@ -1,7 +1,9 @@
-# from .facebook_account_update_api_view import FacebookAccountUpdateAPIView
 from .follow_create_api_view import FollowCreateAPIView
 from .follow_destroy_api_view import FollowDestroyAPIView
 from .follow_list_api_view import FollowingListView, FollowerListView
 from .user_retrieve_api_view import UserRetrieveAPIView
 from .grass_list_api_view import GrassListAPIView
 from .user_destory_api_view import UserDestoryAPIView
+from .user_repository_update_api_view import UserRepositoryUpdateApiView
+from .user_subscribe_mail_update_api_view import UserSubscribeMailUpdateApiView
+from .user_velog_username_update_api_view import UserVelogUsernameUpdateApiView
