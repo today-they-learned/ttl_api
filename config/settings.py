@@ -75,6 +75,7 @@ THIRDPART_APPS = [
     "corsheaders",
     # django-extensions
     "django_extensions",
+    "django_celery_beat",
 ]
 
 DJANGO_APPS = [
