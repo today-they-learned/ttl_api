@@ -91,13 +91,13 @@ DJANGO_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRDPART_APPS + CUSTOM_APPS
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -231,17 +231,18 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ORIGIN_WHITELIST = [
-    "http://127.0.0.1:3000",
-    "http://localhost:3000",
-    "http://0.0.0.0:3000",
-    "http://todaytheylearn.com",
-    "https://todaytheylearn.com",
-    ".todaytheylearn.com",
-    ".todaytheylearned.netlify.app",
-    "http://api.todaytheylearn.com",
-    "https://api.todaytheylearn.com",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://127.0.0.1:3000",
+#     "http://localhost:3000",
+#     "http://0.0.0.0:3000",
+#     "http://todaytheylearn.com",
+#     "https://todaytheylearn.com",
+#     ".todaytheylearn.com",
+#     ".todaytheylearned.netlify.app",
+#     "http://api.todaytheylearn.com",
+#     "https://api.todaytheylearn.com",
+# ]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
