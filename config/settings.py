@@ -263,5 +263,3 @@ CELERY_RESULT_SERIALIZER = "json"
 #     "all_applications": False,
 #     "group_models": True,
 # }
-
-from rest_framework.authentication import SessionAuthentication
