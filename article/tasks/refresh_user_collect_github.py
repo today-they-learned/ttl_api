@@ -8,4 +8,4 @@ def refresh_user_collect_github():
     users = User.objects.all()
     for user in users:
         if user.repository:
-            collect_github_til_task.apply_async(user.id, user.repository)
+            collect_github_til_task(user.id, user.repository)
