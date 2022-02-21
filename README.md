@@ -56,10 +56,10 @@ TTL`Today They Learned` Github, Tistory, velog 등 다양한 곳에 나눠져 �
 ## 디비 스키마 구조
 
 ### 전체 모델 스키마
-![서비스 모델 스키마](.total_model.png)
+![서비스 모델 스키마](total_model.png)
 
 ### DB 스키마
-![디비 스키마](.model.png)
+![디비 스키마](model.png)
 
 
 <br />
