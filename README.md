@@ -116,6 +116,6 @@ TTL`Today They Learned` Github, Tistory, velog 등 다양한 곳에 나눠져 �
 
 | [김신건](https://github.com/shinkeonkim) | [진승희](https://github.com/Jin409) | [최지현](https://github.com/Jihyun-Choi) |
 |:--------:|:--------:|:--------:|
-|<img src="https://user-images.githubusercontent.com/70438098/155129705-2d613cce-a4e5-47c7-a636-8cfed8425df9.png" width="180" height="160">|<img src="https://user-images.githubusercontent.com/70438098/155129927-2d464849-3508-4307-8f38-16ad385feaec.png" width="180" height="160">|<img src="https://user-images.githubusercontent.com/70438098/155130039-3bf5162d-c726-4331-b53b-c78a05236a12.png" width="180" height="160"> |
+|<img src="https://avatars.githubusercontent.com/u/47373998" width="180" height="160">|<img src="https://avatars.githubusercontent.com/u/77621712" width="180" height="160">|<img src="https://avatars.githubusercontent.com/u/70438098" width="180" height="160"> |
 
 <br/>
