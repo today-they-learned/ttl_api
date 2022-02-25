@@ -20,6 +20,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
     )
     feedback = serializers.SerializerMethodField()
     is_bookmarked = serializers.SerializerMethodField()
+    is_feedbacked = serializers.SerializerMethodField()
 
     class Meta:
         """Meta definition for ArticleSerializer."""
@@ -37,6 +38,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "bookmark_count",
             "is_bookmarked",
             "feedback",
+            "is_feedbacked",
             "created_at",
             "updated_at",
         ]
@@ -49,6 +51,7 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             "bookmark_count",
             "is_bookmarked",
             "feedback",
+            "is_feedbacked",
             "created_at",
             "updated_at",
         ]
@@ -66,5 +69,13 @@ class ArticleSerializer(TaggitSerializer, WritableNestedModelSerializer):
             user = self.context["request"].user
 
             return obj.bookmarks.filter(user=user).exists()
+        except:
+            return False
+
+    def get_is_feedbacked(self, obj):
+        try:
+            user = self.context["request"].user
+
+            return obj.feedbacks.filter(user=user).exists()
         except:
             return False

@@ -10,6 +10,8 @@ from rest_framework import serializers
 
 class ArticleSubSerializer(serializers.ModelSerializer):
     feedback = serializers.SerializerMethodField()
+    is_bookmarked = serializers.SerializerMethodField()
+    is_feedbacked = serializers.SerializerMethodField()
 
     class Meta:
         model = Article
@@ -18,6 +20,8 @@ class ArticleSubSerializer(serializers.ModelSerializer):
             "id",
             "study_count",
             "feedback",
+            "is_bookmarked",
+            "is_feedbacked",
             "feedback_count",
             "bookmark_count",
         ]
@@ -26,6 +30,8 @@ class ArticleSubSerializer(serializers.ModelSerializer):
             "id",
             "study_count",
             "feedback",
+            "is_bookmarked",
+            "is_feedbacked",
             "feedback_count",
             "bookmark_count",
         ]
@@ -37,6 +43,22 @@ class ArticleSubSerializer(serializers.ModelSerializer):
             .annotate(total=Count("category"))
             .order_by("-total")
         )
+
+    def get_is_bookmarked(self, obj):
+        try:
+            user = self.context["request"].user
+
+            return obj.bookmarks.filter(user=user).exists()
+        except:
+            return False
+
+    def get_is_feedbacked(self, obj):
+        try:
+            user = self.context["request"].user
+
+            return obj.feedbacks.filter(user=user).exists()
+        except:
+            return False
 
 
 class ArticleSubRetrieveAPIView(BaseView, RetrieveAPIView):
