@@ -9,7 +9,7 @@ from article.models import Article
 
 class ArticleSubRetrieveAPIView(BaseView, RetrieveAPIView):
     serializer_class = ArticleSubSerializer
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().prefetch_related("bookmarks", "feedbacks")
     permission_classes = [AllowAny]
 
     def get(self, request, *args, **kwargs):
