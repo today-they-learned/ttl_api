@@ -59,9 +59,11 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                 studied_article_ids = Study.objects.filter(
                     user=self.current_user
                 ).values_list("article__id", flat=True)
-
-                queryset = queryset.filter(id__in=studied_article_ids)
-
+                
+                queryset = []
+                for studied_article_id in studied_article_ids:
+                    queryset.append(Article.objects.get(id = studied_article_id))
+                               
         if user_id is not None:
             queryset = queryset.filter(user__id=user_id)
 
