@@ -11,7 +11,7 @@ from rest_framework.response import Response
 
 class ArticleRetrieveUpdateDestroyAPIView(BaseView, RetrieveUpdateDestroyAPIView):
     serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+    queryset = Article.objects.all().prefetch_related("bookmarks", "feedbacks")
     permission_classes = [IsArticleEditableOrDestroyable]
 
     def get(self, request, *args, **kwargs):
