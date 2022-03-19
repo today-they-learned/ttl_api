@@ -16,7 +16,7 @@ from user.models import Follow, Grass
 
 class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
     serializer_class = ArticleSerializer
-    queryset = Article.objects.all().prefetch_related("bookmarks")
+    queryset = Article.objects.all().prefetch_related("bookmarks", "feedbacks")
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, TagFilter]
     search_fields = ["title", "content"]
@@ -59,8 +59,8 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                 studied_article_ids = Study.objects.filter(
                     user=self.current_user
                 ).values_list("article__id", flat=True)
-
-                queryset = queryset.filter(id__in=studied_article_ids)
+                
+                queryset = queryset.filter(id__in=studied_article_ids).order_by('studies')
 
         if user_id is not None:
             queryset = queryset.filter(user__id=user_id)
