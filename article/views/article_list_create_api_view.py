@@ -43,6 +43,9 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
         user_id = request.GET.get("user_id")
 
         if tab is not None:
+            if self.is_anonymous_user:
+                return Response(status=204)
+
             if tab == "follow":
                 following_user_ids = Follow.objects.filter(
                     follower=self.current_user
