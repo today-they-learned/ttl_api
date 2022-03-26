@@ -1,0 +1,8 @@
+-r base.txt
+
+coverage==6.3.2
+django-test-plus==2.2.0
+django-coverage-plugin==2.0.2
+faker==13.3.3
+factory-boy==3.2.1
+parameterized==0.8.1
