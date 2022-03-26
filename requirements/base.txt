@@ -1,7 +1,7 @@
 # Django
 Django==3.2.12
 django-environ==0.8.1
-Pillow==9.0.0
+Pillow>=9.0.1
 
 # Django Rest Framework
 dj-rest-auth==2.2.2
