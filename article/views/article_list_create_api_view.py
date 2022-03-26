@@ -54,7 +54,7 @@ class ArticleListCreateAPIView(BaseView, ListCreateAPIView):
                     user=self.current_user
                 ).values_list("article__id", flat=True)
 
-                queryset = queryset.filter(id__in=bookmark_article_ids)
+                queryset = queryset.filter(id__in=bookmark_article_ids).order_by('bookmarks')
             elif tab == "study":
                 studied_article_ids = Study.objects.filter(
                     user=self.current_user
