@@ -10,7 +10,8 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
+from nplusone.ext.wsgi import NPlusOneMiddleware
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
-application = get_wsgi_application()
+application = NPlusOneMiddleware(get_wsgi_application())

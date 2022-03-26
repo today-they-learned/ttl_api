@@ -15,6 +15,7 @@ import environ
 import os
 from pathlib import Path
 from datetime import timedelta
+import logging
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SITE_ID = 1
@@ -63,6 +64,8 @@ THIRDPART_APPS = [
     # django-extensions
     "django_extensions",
     "django_celery_beat",
+    # nplusone
+    "nplusone.ext.django",
 ]
 
 DJANGO_APPS = [
@@ -85,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "nplusone.ext.django.NPlusOneMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -213,6 +217,37 @@ SIMPLE_JWT = {
 SWAGGER_SETTINGS = {
     "USE_SESSION_AUTH": False,
 }
+
+NPLUSONE_LOGGER = logging.getLogger("nplusone")
+NPLUSONE_LOG_LEVEL = logging.DEBUG
+NPLUSONE_RAISE = False
+NPLUSONE_LOG = False
+
+LOGGING = {
+    "version": 1,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "nplusone": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+    },
+}
+
+NPLUSONE_WHITELIST = [
+    {"model": "admin.LogEntry", "label": "unused_eager_load"},
+    {"model": "article.Article", "label": "todo"},
+    {"model": "article.Bookmark", "label": "todo"},
+    {"model": "article.Feedback", "label": "todo"},
+    {"model": "article.UploadImage", "label": "todo"},
+    {"model": "comment.Comment", "label": "todo"},
+    {"model": "study.Study", "label": "todo"},
+    {"model": "user.User", "label": "todo"},
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
