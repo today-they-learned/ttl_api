@@ -1,0 +1,18 @@
+[run]
+plugins = django_coverage_plugin
+omit =
+        */venv/*
+        */migrations/*
+        */manage.py
+
+[report]
+omit =
+        */venv/*
+        */migrations/*
+        */manage.py
+
+[html]
+directory = cover
+
+[django_coverage_plugin]
+template_extensions = html, txt, tex, email
